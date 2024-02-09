@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Contracts\Paginacao\" />
+      <Folder Include="Contracts\Repositories\" />
+      <Folder Include="Entities\" />
+      <Folder Include="Paginacao\" />
+      <Folder Include="Validation\" />
+    </ItemGroup>
+
 </Project>
