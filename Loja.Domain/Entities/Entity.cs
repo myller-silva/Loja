@@ -2,7 +2,7 @@ using FluentValidation.Results;
 
 namespace Loja.Domain.Entities;
 
-public class Entity
+public abstract class Entity: BaseEntity
 {
     public virtual bool Validar(out ValidationResult validationResult)
     {
