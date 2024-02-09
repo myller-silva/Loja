@@ -9,9 +9,12 @@
     <ItemGroup>
       <Folder Include="Contracts\Paginacao\" />
       <Folder Include="Contracts\Repositories\" />
-      <Folder Include="Entities\" />
       <Folder Include="Paginacao\" />
       <Folder Include="Validation\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.9.0" />
     </ItemGroup>
 
 </Project>
