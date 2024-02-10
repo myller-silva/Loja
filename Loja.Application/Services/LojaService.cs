@@ -40,15 +40,11 @@ public class LojaService: ILojaService
 
     public async Task<bool> Update(IUpdateDto<Domain.Entities.Loja> obj)
     {
-        throw new NotImplementedException();
-    }
-
-    public async Task<bool> Update(Domain.Entities.Loja loja)
-    {
-        var response = await _repository.Update(loja);
+        
+        var response = await _repository.Update(obj.Value);
         return response;
     }
-
+    
     public async Task<bool> Delete(int id)
     {
         var response = await _repository.Delete(id);
