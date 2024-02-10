@@ -1,4 +1,8 @@
+using Loja.Application.Contracts;
+using Loja.Application.Services;
+using Loja.Domain.Contracts;
 using Loja.Infra.Context;
+using Loja.Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +18,21 @@ builder.Services.AddSwaggerGen();
 // Configuração do DbContext
 builder.Services.AddDbContext<LojaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Services
+builder
+    .Services
+    .AddScoped<IUsuarioRepository, UsuarioRepository>()
+    .AddScoped<IDescontoRepository, DescontoRepository>()
+    .AddScoped<ILojaRepository, LojaRepository>()
+    .AddScoped<IProdutoRepository, ProdutoRepository>();
+
+builder
+    .Services
+    .AddScoped<IUsuarioService, UsuarioService>()
+    .AddScoped<IDescontoService, DescontoService>()
+    .AddScoped<ILojaService, LojaService>()
+    .AddScoped<IProdutoService, ProdutoService>();
 
 
 var app = builder.Build();

@@ -1,4 +1,5 @@
 using System.Reflection;
+using Loja.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Loja.Infra.Context;
@@ -7,10 +8,10 @@ public class LojaDbContext: DbContext
 {
 
     public DbSet<Domain.Entities.Loja> Lojas { get; set; }
-    public DbSet<Domain.Entities.Produto> Produtos { get; set; }
-    public DbSet<Domain.Entities.Usuario> Usuarios { get; set; }
-    public DbSet<Domain.Entities.Desconto> Descontos { get; set; }
-    public DbSet<Domain.Entities.Estoque> Estoques { get; set; }
+    public DbSet<Produto> Produtos { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Desconto> Descontos { get; set; }
+    public DbSet<Estoque> Estoques { get; set; }
     
     public LojaDbContext(DbContextOptions<LojaDbContext> options): base(options)
     { }
@@ -28,6 +29,23 @@ public class LojaDbContext: DbContext
         // Vai aplicar os mappings (Modelo -> Banco) usando reflection.
         // Os mappings ficam na pasta Mappings
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        #region Configuração do relacionamento muito para muitos de Loja e Produto
+
+        modelBuilder.Entity<Estoque>()
+            .HasKey(e => e.Id); 
+
+        modelBuilder.Entity<Estoque>()
+            .HasOne(e => e.Loja)
+            .WithMany(l => l.Estoques)
+            .HasForeignKey(e => e.LojaId);
+
+        modelBuilder.Entity<Estoque>()
+            .HasOne(e => e.Produto)
+            .WithMany(p => p.Estoques)
+            .HasForeignKey(e => e.ProdutoId);
+
+        #endregion 
     }
 
     public async Task<bool> Commit()
