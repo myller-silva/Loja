@@ -4,6 +4,7 @@ public class Loja: Entity
 {
     public string Nome { get; set; } = null!;
     public string Endereco { get; set; } = null!;
+    
+    public virtual ICollection<Estoque> Estoques { get; set; } = new List<Estoque>();
 
-    public List<Produto> Produtos { get; set; } = new();
 }

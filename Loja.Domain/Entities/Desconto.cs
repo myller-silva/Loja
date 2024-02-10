@@ -3,6 +3,7 @@ namespace Loja.Domain.Entities;
 public class Desconto : Entity
 {
     public double ValorDesconto { get; set; }
+    
     public int ProdutoId { get; set; }
     public int UsuarioId { get; set; }
 
