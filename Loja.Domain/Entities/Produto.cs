@@ -7,5 +7,6 @@ public class Produto : Entity
     public string? Descricao { get; set; }
     
     public virtual ICollection<Estoque> Estoques { get; set; } = new List<Estoque>();
+    public virtual ICollection<Desconto> Descontos { get; set; } = new List<Desconto>();
     
 }
