@@ -1,39 +1,40 @@
 using Loja.Application.Contracts;
-using Loja.Application.Dto.Loja;
+using Loja.Application.Dto.Estoque;
+using Loja.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Loja.API.Controllers;
 
 [ApiController]
-[Route("loja")]
-public class LojaController : ControllerBase
+[Route("estoque")]
+public class EstoqueController : ControllerBase
 {
-    private readonly ILojaService _service;
+    private readonly IEstoqueService _service;
 
-    public LojaController(ILojaService service)
+    public EstoqueController(IEstoqueService service)
     {
         _service = service;
     }
 
     [HttpGet]
-    [SwaggerOperation(Summary = "Obtém uma lista de lojas com base nos parâmetros fornecidos.",
-        Tags = new[] { "Loja" })]
-    [ProducesResponseType(typeof(List<LojasDto>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Get([FromQuery] LojasDto lojasDto)
+    [SwaggerOperation(Summary = "Obtém uma lista de estoques com base nos parâmetros fornecidos.",
+        Tags = new[] { "Estoque" })]
+    [ProducesResponseType(typeof(List<Estoque>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Get([FromQuery] EstoquesDto estoquesDto)
     {
-        var response = await _service.Get(lojasDto);
+        var response = await _service.Get(estoquesDto);
         return Ok(response);
     }
 
     [HttpGet("{id}")]
-    [SwaggerOperation(Summary = "Obtém uma loja com base no identificador.", Tags = new[] { "Loja" })]
-    [ProducesResponseType(typeof(Domain.Entities.Loja), StatusCodes.Status200OK)]
+    [SwaggerOperation(Summary = "Obtém um estoque com base no identificador.", Tags = new[] { "Estoque" })]
+    [ProducesResponseType(typeof(Estoque), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Get(int id)
     {
         var response = await _service.Get(id);
-        if (response != null)
+        if (response is not null)
         {
             return Ok(response);
         }
@@ -42,12 +43,12 @@ public class LojaController : ControllerBase
     }
 
     [HttpPost]
-    [SwaggerOperation(Summary = "Cria uma nova loja.", Tags = new[] { "Loja" })]
+    [SwaggerOperation(Summary = "Cria um novo estoque.", Tags = new[] { "Estoque" })]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post(CreateLojaDto loja)
+    public async Task<IActionResult> Post(CreateEstoqueDto estoqueDto)
     {
-        var response = await _service.Create(loja);
+        var response = await _service.Create(estoqueDto);
         if (response)
         {
             return NoContent();
@@ -57,12 +58,12 @@ public class LojaController : ControllerBase
     }
 
     [HttpPut]
-    [SwaggerOperation(Summary = "Atualiza uma loja existente.", Tags = new[] { "Loja" })]
+    [SwaggerOperation(Summary = "Atualiza um estoque existente.", Tags = new[] { "Estoque" })]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Update(UpdateLojaDto loja)
+    public async Task<IActionResult> Update(UpdateEstoqueDto estoque)
     {
-        var response = await _service.Update(loja);
+        var response = await _service.Update(estoque);
         if (response)
         {
             return NoContent();
@@ -72,7 +73,7 @@ public class LojaController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [SwaggerOperation(Summary = "Exclui uma loja com base no identificador.", Tags = new[] { "Loja" })]
+    [SwaggerOperation(Summary = "Exclui um estoque com base no identificador.", Tags = new[] { "Estoque" })]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(int id)
