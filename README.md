@@ -29,7 +29,7 @@ Lembre-se de modificar a extenção "Exemple" para o nome do ambiente.
 
 ### Swagger
 <details>
-<summary>Imagens do Swagger para facilitar a visualização das rotas atuais</summary>
+<summary><span style="color: #007acc; padding: 2px 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.5);">Clique aqui</span>para abrir as imagens do Swagger para facilitar a visualização das rotas atuais.</summary>
 
 ![img_2.png](swagger_imgs/img_2.png)
 ![img_3.png](swagger_imgs/img_3.png)
