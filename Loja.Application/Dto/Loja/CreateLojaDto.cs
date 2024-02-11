@@ -4,5 +4,6 @@ namespace Loja.Application.Dto.Loja;
 
 public class CreateLojaDto: ICreateDto<Domain.Entities.Loja>
 {
-    public Domain.Entities.Loja Value { get; set; }
+    public string Nome { get; set; } = null!;
+    public string Endereco { get; set; } = null!;
 }

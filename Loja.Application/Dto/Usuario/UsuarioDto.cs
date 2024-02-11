@@ -6,10 +6,10 @@ namespace Loja.Application.Dto.Usuario
 {
     public class UsuarioDto: IDto<Domain.Entities.Usuario>
     {
-        public string Cpf { get; set; }
-        public string Email { get; set; }
-        public string Nome { get; set; }
-        public string Senha { get; set; }
+        public string? Cpf { get; set; }
+        public string? Email { get; set; }
+        public string? Nome { get; set; }
+        public string? Senha { get; set; }
 
         public Expression<Func<Domain.Entities.Usuario, bool>> Filtro()
         {

@@ -4,5 +4,7 @@ namespace Loja.Application.Dto.Produto;
 
 public class CreateProdutoDto: ICreateDto<Domain.Entities.Produto>
 {
-    public Domain.Entities.Produto Value { get; set; }
+    public string Nome { get; set; } = null!;
+    public double Preco { get; set; }
+    public string? Descricao { get; set; }
 }
