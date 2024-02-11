@@ -1,11 +1,12 @@
 # Loja
 
 ### Swagger
+
 <details>
 <summary>Clique aqui para abrir as imagens do Swagger para facilitar a visualização das rotas atuais.</summary>
 
 ![img_2.png](swagger_imgs/img_2.png)
-![img_3.png](swagger_imgs/img_3.png)
+![img_6.png](swagger_imgs/img_6.png)
 ![img_4.png](swagger_imgs/img_4.png)
 ![img_1.png](swagger_imgs/img_1.png)
 ![img_5.png](swagger_imgs/img_5.png)
