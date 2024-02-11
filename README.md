@@ -1,5 +1,17 @@
 # Loja
 
+### Swagger
+<details>
+<summary><span style="color: #007acc; padding: 2px 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.5);">Clique aqui</span> para abrir as imagens do Swagger para facilitar a visualização das rotas atuais.</summary>
+
+![img_2.png](swagger_imgs/img_2.png)
+![img_3.png](swagger_imgs/img_3.png)
+![img_4.png](swagger_imgs/img_4.png)
+![img_1.png](swagger_imgs/img_1.png)
+![img_5.png](swagger_imgs/img_5.png)
+
+</details>
+
 ### Sql Server
 
 O banco de dados adotado neste projeto foi o Sql Server. Para gerenciar o banco foi utilizado o SQL Server Management
@@ -26,18 +38,6 @@ Lembre-se de modificar a extenção "Exemple" para o nome do ambiente.
   irá subir todas as ``migrations`` para o banco de dados.
 * Para rodar efetivamente o projeto basta usar o comando ``dotnet run``. Certifique que esteja configurado para rodar
   ambiente correto.
-
-### Swagger
-<details>
-<summary><span style="color: #007acc; padding: 2px 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.5);">Clique aqui</span>para abrir as imagens do Swagger para facilitar a visualização das rotas atuais.</summary>
-
-![img_2.png](swagger_imgs/img_2.png)
-![img_3.png](swagger_imgs/img_3.png)
-![img_4.png](swagger_imgs/img_4.png)
-![img_1.png](swagger_imgs/img_1.png)
-![img_5.png](swagger_imgs/img_5.png)
-
-</details>
 
 ### Tecnologias usadas
 
