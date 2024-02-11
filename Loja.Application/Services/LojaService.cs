@@ -1,7 +1,8 @@
 using Loja.Application.Contracts; 
 using Loja.Application.Dto.Abstractions;
 using Loja.Application.Dto.Loja;
-using Loja.Domain.Contracts; 
+using Loja.Domain.Contracts;
+using Loja.Domain.Entities;
 
 namespace Loja.Application.Services;
 
@@ -16,14 +17,16 @@ public class LojaService: ILojaService
  
 
 
-    public async Task<bool> Create(ICreateDto<Domain.Entities.Loja> obj)
+    public async Task<bool> Create(CreateLojaDto dto)
     {
-        return await _repository.Create(new Domain.Entities.Loja
+        var response = await _repository.Create(new Domain.Entities.Loja
         {
-            Endereco = obj.Value.Endereco,
-            Nome = obj.Value.Nome
-            
+            Endereco = dto.Endereco,
+            Nome = dto.Nome,
+            Estoques = new List<Estoque>()
         });
+        // Console.WriteLine(response);
+        return response;
     }
 
     public async Task<List<Domain.Entities.Loja>> Get(IDto<Domain.Entities.Loja> dto)
@@ -38,11 +41,19 @@ public class LojaService: ILojaService
         return response;
     }
 
-    public async Task<bool> Update(IUpdateDto<Domain.Entities.Loja> obj)
+    public async Task<bool> Update(UpdateLojaDto dto)
     {
         
-        var response = await _repository.Update(obj.Value);
-        return response;
+        var response = await _repository.Get(dto.Id);
+        if (response is null)
+        {
+            return false;
+        }
+        
+        response.Nome = dto.Nome;
+        response.Endereco = dto.Endereco;
+        
+        return await _repository.Update(response);
     }
     
     public async Task<bool> Delete(int id)

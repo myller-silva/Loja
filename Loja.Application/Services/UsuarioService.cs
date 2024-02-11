@@ -1,11 +1,12 @@
-using Loja.Application.Contracts; 
+using Loja.Application.Contracts;
 using Loja.Application.Dto.Abstractions;
+using Loja.Application.Dto.Usuario;
 using Loja.Domain.Contracts;
 using Loja.Domain.Entities;
 
 namespace Loja.Application.Services;
 
-public class UsuarioService: IUsuarioService
+public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _repository;
 
@@ -13,21 +14,21 @@ public class UsuarioService: IUsuarioService
     {
         _repository = repository;
     }
- 
 
-    public async Task<bool> Create(ICreateDto<Usuario> obj)
+
+    public async Task<bool> Create(CreateUsuarioDto dto)
     {
         return await _repository.Create(new Usuario
         {
-            Cpf = obj.Value.Cpf,
-            Email = obj.Value.Email,
-            Nome = obj.Value.Nome,
-            Senha = obj.Value.Senha
+            Cpf = dto.Cpf,
+            Email = dto.Email,
+            Nome = dto.Nome,
+            Senha = dto.Senha
         });
     }
 
     public async Task<List<Usuario>> Get(IDto<Usuario> dto)
-    { 
+    {
         var response = await _repository.Get(dto.Filtro());
         return response;
     }
@@ -38,13 +39,36 @@ public class UsuarioService: IUsuarioService
         return response;
     }
 
-    public async Task<bool> Update(IUpdateDto<Usuario> obj)
+    public async Task<bool> Update(UpdateUsuarioDto dto)
     {
-        var response = await _repository.Update(obj.Value);
-        return response;
-    }
+        var response = await _repository.Get(dto.Id);
+        if (response is null)
+        {
+            return false;
+        }
 
-    
+        if (!string.IsNullOrEmpty(dto.Nome))
+        {
+            response.Nome = dto.Nome;
+        }
+
+        if (!string.IsNullOrEmpty(dto.Senha))
+        {
+            response.Senha = dto.Senha;
+        }
+
+        if (!string.IsNullOrEmpty(dto.Email))
+        {
+            response.Email = dto.Email;
+        }
+
+        if (!string.IsNullOrEmpty(dto.Cpf))
+        {
+            response.Cpf = dto.Cpf;
+        }
+
+        return await _repository.Update(response);
+    }
 
     public async Task<bool> Delete(int id)
     {

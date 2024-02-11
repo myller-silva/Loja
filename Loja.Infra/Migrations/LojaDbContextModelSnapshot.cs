@@ -149,7 +149,7 @@ namespace Loja.Infra.Migrations
             modelBuilder.Entity("Loja.Domain.Entities.Desconto", b =>
                 {
                     b.HasOne("Loja.Domain.Entities.Produto", "Produto")
-                        .WithMany()
+                        .WithMany("Descontos")
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -191,6 +191,8 @@ namespace Loja.Infra.Migrations
 
             modelBuilder.Entity("Loja.Domain.Entities.Produto", b =>
                 {
+                    b.Navigation("Descontos");
+
                     b.Navigation("Estoques");
                 });
 
