@@ -41,6 +41,23 @@ public class LojaController : ControllerBase
         return NotFound();
     }
 
+
+    [HttpGet("{lojaId}/produtos/{produtoId}/desconto/{usuarioId}")]
+    [SwaggerOperation(Summary = "Consultar desconto aplicado a um produto para um usuário específico.",
+        Tags = new[] { "Loja" })]
+    [ProducesResponseType(typeof(Domain.Entities.Loja), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Get(int lojaId, int produtoId, int usuarioId)
+    {
+        var response = await _service.DescontoEmProdutoParaUsuario(lojaId, produtoId, usuarioId);
+        if (response != null)
+        {
+            return Ok(response);
+        }
+
+        return NotFound();
+    }
+
     [HttpPost]
     [SwaggerOperation(Summary = "Cria uma nova loja.", Tags = new[] { "Loja" })]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

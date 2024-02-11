@@ -9,14 +9,14 @@ namespace Loja.Application.Services;
 public class LojaService: ILojaService
 {
     private readonly ILojaRepository _repository;
+    private readonly IProdutoRepository _produtoRepository;
 
-    public LojaService(ILojaRepository repository)
+    public LojaService(ILojaRepository repository, IProdutoRepository produtoRepository)
     {
         _repository = repository;
+        _produtoRepository = produtoRepository;
     }
- 
-
-
+    
     public async Task<bool> Create(CreateLojaDto dto)
     {
         var response = await _repository.Create(new Domain.Entities.Loja
@@ -25,7 +25,6 @@ public class LojaService: ILojaService
             Nome = dto.Nome,
             Estoques = new List<Estoque>()
         });
-        // Console.WriteLine(response);
         return response;
     }
 
@@ -55,7 +54,14 @@ public class LojaService: ILojaService
         
         return await _repository.Update(response);
     }
-    
+
+    public async Task<Produto?> DescontoEmProdutoParaUsuario(int lojaId, int produtoId, int usuarioId)
+    {
+        var response = await _produtoRepository
+            .DescontoEmProdutoParaUsuario(lojaId, produtoId, usuarioId);
+        return response;
+    }
+
     public async Task<bool> Delete(int id)
     {
         var response = await _repository.Delete(id);
