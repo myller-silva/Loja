@@ -37,7 +37,7 @@ Lembre-se de modificar a extenção "Exemple" para o nome do ambiente.
 * Faça o ``restore`` dos pacotes NuGet. Pode ser feito por linha de comando com o comando: ``dotnet restore``
 * Atualize os dados do banco de dados com o EntityFramework utilizando o comando: ``dotnet ef database update``. Isso
   irá subir todas as ``migrations`` para o banco de dados.
-* Para rodar efetivamente o projeto basta usar o comando ``dotnet run``. Certifique que esteja configurado para rodar
+* Para rodar efetivamente o projeto basta usar o comando ``dotnet build`` e depois ``dotnet run``. Certifique que esteja configurado para rodar
   ambiente correto.
 
 ### Tecnologias usadas
